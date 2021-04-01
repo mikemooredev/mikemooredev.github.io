@@ -17,9 +17,8 @@ export default class extends Module {
       formIsValid: true,
       mail: {
         options: {
-          apiKey: 'C7DAC08514BC176826913DA29764F86BCF44E5317EE8CBE061253A814DAB6959E6D5B610E6F5E05513F4AD19E6679463',
-          apiUri: 'https://api.elasticemail.com/',
-          apiVersion: 'v2'
+          apiKey: '091BC1A3C79AABA6D03D33F7B28445D6776F77C21C35F92B949525AA797AB8C92171DA7992E664C67BD0A429FC18628A',
+          username: 'mike.moore88@googlemail.com'
         }
       }
     }
@@ -82,23 +81,19 @@ export default class extends Module {
 
     console.log(recaptchaToken)
 
-    const eeClient = require('elasticemail-webapiclient').client;
+    const elasticemail = require('elasticemail');
+
+    const client = elasticemail.createClient({
+      username: this.data.options.username,
+      apiKey: this.data.options.apiKey
+    });
 
     const bodyText = `Name: ${this.els.nameEl.value} \r\n` +
       `Email: ${this.els.emailEl.value} \r\n` +
       `Phone: ${this.els.phoneEl.value} \r\n` +
       `Message: ${this.els.messageEl.value} \r\n\r\n`;
 
-    //const ee = new elasticemail(this.data.mail.options);
-
-    const ee = new eeClient(this.data.mail.options);
-
-    // Load account data
-    ee.Account.Load().then(function (resp) {
-      console.log(resp);
-    });
-
-    const emailParams = {
+    const message = {
       "subject": 'New Enquiry',
       "to": 'me@mikemoore.dev',
       "from": 'noreply@mikemoore.dev',
@@ -112,19 +107,20 @@ export default class extends Module {
       "isTransactional": true
     };
 
-    ee.Email.Send(emailParams)
-      .catch((err) => {
+    client.mailer.send(message, function (err, result) {
+      if (err) {
         this.setNotificationHTML(this.els.notificationEl, `<p class="isDanger boxed">${err}</p>`)
-      })
-      .then((result) => {
+        return console.error(err);
+      }
 
-        if (result.success) {
-          this.setNotificationHTML(this.els.notificationEl, `<p class="isSuccess boxed">Thank you for getting in touch, I'll get back to you as soon as possible.</p>`)
-        } else {
-          this.setNotificationHTML(this.els.notificationEl, `<p class="isDanger boxed">Oops, it looks like something went wrong, please email me directly at <a href="mailto:${emailParams.to}" title="Direct email: ${emailParams.to}">${emailParams.to}</a></p>`)
-        }
+      if (result.success) {
+        this.setNotificationHTML(this.els.notificationEl, `<p class="isSuccess boxed">Thank you for getting in touch, I'll get back to you as soon as possible.</p>`)
+      } else {
+        this.setNotificationHTML(this.els.notificationEl, `<p class="isDanger boxed">Oops, it looks like something went wrong, please email me directly at <a href="mailto:${emailParams.to}" title="Direct email: ${emailParams.to}">${emailParams.to}</a></p>`)
+      }
 
-      });
+      console.log(result);
+    });
 
   }
 

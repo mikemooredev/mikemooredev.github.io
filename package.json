@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "core-js": "^3.9.1",
-    "elasticemail-webapiclient": "^2.0.14",
+    "elasticemail": "^0.2.0",
     "recaptcha-v3": "^1.8.0"
   }
 }

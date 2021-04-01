@@ -3714,13 +3714,13 @@ var map = {
 	"./contact-form": [
 		"./src/scripts/modules/contact-form.js",
 		"vendors-node_modules_core-js_modules_es_array_concat_js-node_modules_core-js_modules_es_array-cd0222",
-		"vendors-node_modules_core-js_modules_es_object_get-prototype-of_js-node_modules_core-js_modul-95fdc8",
+		"vendors-node_modules_core-js_modules_es_object_get-prototype-of_js-node_modules_core-js_modul-e7a159",
 		"src_scripts_modules_contact-form_js"
 	],
 	"./contact-form.js": [
 		"./src/scripts/modules/contact-form.js",
 		"vendors-node_modules_core-js_modules_es_array_concat_js-node_modules_core-js_modules_es_array-cd0222",
-		"vendors-node_modules_core-js_modules_es_object_get-prototype-of_js-node_modules_core-js_modul-95fdc8",
+		"vendors-node_modules_core-js_modules_es_object_get-prototype-of_js-node_modules_core-js_modul-e7a159",
 		"src_scripts_modules_contact-form_js"
 	],
 	"./module/Module": [
@@ -3778,16 +3778,13 @@ module.exports = webpackAsyncContext;
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			id: moduleId,
-/******/ 			loaded: false,
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Flag the module as loaded
-/******/ 		module.loaded = true;
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -3923,15 +3920,6 @@ module.exports = webpackAsyncContext;
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	}();
-/******/ 	
-/******/ 	/* webpack/runtime/node module decorator */
-/******/ 	!function() {
-/******/ 		__webpack_require__.nmd = function(module) {
-/******/ 			module.paths = [];
-/******/ 			if (!module.children) module.children = [];
-/******/ 			return module;
 /******/ 		};
 /******/ 	}();
 /******/ 	

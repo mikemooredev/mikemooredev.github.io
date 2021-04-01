@@ -104,9 +104,8 @@ var _default = /*#__PURE__*/function (_Module) {
         formIsValid: true,
         mail: {
           options: {
-            apiKey: 'C7DAC08514BC176826913DA29764F86BCF44E5317EE8CBE061253A814DAB6959E6D5B610E6F5E05513F4AD19E6679463',
-            apiUri: 'https://api.elasticemail.com/',
-            apiVersion: 'v2'
+            apiKey: '091BC1A3C79AABA6D03D33F7B28445D6776F77C21C35F92B949525AA797AB8C92171DA7992E664C67BD0A429FC18628A',
+            username: 'mike.moore88@googlemail.com'
           }
         }
       };
@@ -168,20 +167,16 @@ var _default = /*#__PURE__*/function (_Module) {
   }, {
     key: "onRecaptchaVerify",
     value: function onRecaptchaVerify(recaptchaToken) {
-      var _this3 = this;
-
       console.log(recaptchaToken);
 
-      var eeClient = __webpack_require__(/*! elasticemail-webapiclient */ "./node_modules/elasticemail-webapiclient/ElasticEmailClient.js").client;
+      var elasticemail = __webpack_require__(/*! elasticemail */ "./node_modules/elasticemail/index.js");
 
-      var bodyText = "Name: ".concat(this.els.nameEl.value, " \r\n") + "Email: ".concat(this.els.emailEl.value, " \r\n") + "Phone: ".concat(this.els.phoneEl.value, " \r\n") + "Message: ".concat(this.els.messageEl.value, " \r\n\r\n"); //const ee = new elasticemail(this.data.mail.options);
-
-      var ee = new eeClient(this.data.mail.options); // Load account data
-
-      ee.Account.Load().then(function (resp) {
-        console.log(resp);
+      var client = elasticemail.createClient({
+        username: this.data.options.username,
+        apiKey: this.data.options.apiKey
       });
-      var emailParams = {
+      var bodyText = "Name: ".concat(this.els.nameEl.value, " \r\n") + "Email: ".concat(this.els.emailEl.value, " \r\n") + "Phone: ".concat(this.els.phoneEl.value, " \r\n") + "Message: ".concat(this.els.messageEl.value, " \r\n\r\n");
+      var message = {
         "subject": 'New Enquiry',
         "to": 'me@mikemoore.dev',
         "from": 'noreply@mikemoore.dev',
@@ -194,14 +189,19 @@ var _default = /*#__PURE__*/function (_Module) {
         "bodyType": 'Plain',
         "isTransactional": true
       };
-      ee.Email.Send(emailParams).catch(function (err) {
-        _this3.setNotificationHTML(_this3.els.notificationEl, "<p class=\"isDanger boxed\">".concat(err, "</p>"));
-      }).then(function (result) {
-        if (result.success) {
-          _this3.setNotificationHTML(_this3.els.notificationEl, "<p class=\"isSuccess boxed\">Thank you for getting in touch, I'll get back to you as soon as possible.</p>");
-        } else {
-          _this3.setNotificationHTML(_this3.els.notificationEl, "<p class=\"isDanger boxed\">Oops, it looks like something went wrong, please email me directly at <a href=\"mailto:".concat(emailParams.to, "\" title=\"Direct email: ").concat(emailParams.to, "\">").concat(emailParams.to, "</a></p>"));
+      client.mailer.send(message, function (err, result) {
+        if (err) {
+          this.setNotificationHTML(this.els.notificationEl, "<p class=\"isDanger boxed\">".concat(err, "</p>"));
+          return console.error(err);
         }
+
+        if (result.success) {
+          this.setNotificationHTML(this.els.notificationEl, "<p class=\"isSuccess boxed\">Thank you for getting in touch, I'll get back to you as soon as possible.</p>");
+        } else {
+          this.setNotificationHTML(this.els.notificationEl, "<p class=\"isDanger boxed\">Oops, it looks like something went wrong, please email me directly at <a href=\"mailto:".concat(emailParams.to, "\" title=\"Direct email: ").concat(emailParams.to, "\">").concat(emailParams.to, "</a></p>"));
+        }
+
+        console.log(result);
       });
     }
   }, {
@@ -451,6 +451,16 @@ var Module = /*#__PURE__*/function () {
 }();
 
 
+
+/***/ }),
+
+/***/ "?dba7":
+/*!************************!*\
+  !*** crypto (ignored) ***!
+  \************************/
+/***/ (function() {
+
+/* (ignored) */
 
 /***/ })
 
