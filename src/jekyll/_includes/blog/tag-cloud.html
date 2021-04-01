@@ -1,0 +1,18 @@
+<section class="tag-cloud">
+  <h3 class="heading mt-0">Tags</h3>
+
+  <ul class="flex-wrapper m-0 p-0">
+    <li class="flex-item tag-cloud__item fb-auto m-0 ptb-0">
+      <a href="/blog" title="All">all</a>
+    </li>
+    {% for tag in site.tag %}
+      {% assign stripped_tag = tag.name | strip_html %}
+      {% assign tag_handle = stripped_tag | downcase | replace: " ", "-" %}
+      <li class="flex-item tag-cloud__item fb-auto m-0 ptb-0">
+        <a href="/blog/tag/{{- tag_handle -}}" title="{{ stripped_tag }}">
+          {{ stripped_tag }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</section>

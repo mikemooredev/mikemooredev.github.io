@@ -1,0 +1,79 @@
+@mixin breakpoint($point) {
+  @if $point == desktop-xlarge {
+    @media (min-width: 100rem) {
+      @content;
+    }
+  } @else if $point == desktop-large {
+    @media (min-width: 90rem) {
+      @content;
+    }
+  } @else if $point == desktop {
+    @media (min-width: 70rem) {
+      @content;
+    }
+  } @else if $point == laptop {
+    @media (min-width: 64rem) {
+      @content;
+    }
+  } @else if $point == tablet {
+    @media (min-width: 50rem) {
+      @content;
+    }
+  } @else if $point == phablet {
+    @media (min-width: 37.5rem) {
+      @content;
+    }
+  } @else if $point == mobileonly {
+    @media (max-width: 37.5rem) {
+      @content;
+    }
+  }
+}
+
+@mixin rotate($deg) {
+  -webkit-transform: rotate($deg);
+  -moz-transform: rotate($deg);
+  -ms-transform: rotate($deg);
+  transform: rotate($deg);
+}
+
+@mixin scale($scale) {
+  -webkit-transform: scale($scale);
+  -moz-transform: scale($scale);
+  -ms-transform: scale($scale);
+  transform: scale($scale);
+}
+
+@mixin transition($properties) {
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+
+  transition-property: #{$properties};
+}
+
+@mixin vertical-align($position: relative) {
+  position: $position;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+@mixin horizontal-align($position: relative) {
+  position: $position;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+@mixin centre-align($position: relative) {
+  position: $position;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%);
+  -ms-transform: translate(-50%);
+  transform: translate(-50%);
+}

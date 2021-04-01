@@ -1,0 +1,411 @@
+:root {
+  --gutter: calc(1rem / 2);
+  @include breakpoint(tablet) {
+    --gutter: 1rem;
+  }
+  --font-spacing: calc(1em / 2);
+  @include breakpoint(tablet) {
+    --font-spacing: 1em;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  font-size: 18px;
+  font-family: "Heebo", sans-serif;
+  font-weight: 400;
+  line-height: 1.8em;
+}
+body {
+  overflow: auto;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  font-style: normal;
+  line-height: inherit;
+  position: relative;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  color: color(grey-light);
+  background-color: color(black);
+  @include breakpoint(laptop) {
+    padding-left: 10rem;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 {
+  font-weight: 100;
+  line-height: 1.6em;
+  margin-top: var(--font-spacing);
+  margin-bottom: var(--font-spacing);
+}
+
+h1,
+.h1 {
+  font-size: 2rem;
+}
+
+h2,
+.h2 {
+  font-size: 1.5rem;
+}
+
+h3,
+.h3 {
+  font-size: 1.2rem;
+}
+
+h4,
+.h4 {
+  font-size: 1rem;
+}
+
+h5,
+.h5 {
+  font-size: 0.8rem;
+}
+
+a {
+  color: color(purple-light);
+  text-decoration: none;
+  @include transition(color);
+  &:hover,
+  &:active {
+    color: color(purple);
+  }
+  &:focus {
+    color: color(purple-lighter);
+  }
+}
+
+p {
+  margin-top: var(--font-spacing);
+  margin-bottom: var(--font-spacing);
+}
+
+strong,
+.strong {
+  font-weight: 600;
+}
+
+.grey {
+  color: color(grey);
+}
+
+.heading {
+  display: inline-block;
+  position: relative;
+  &::after {
+    content: "";
+    display: block;
+    border-bottom: 1px solid color(purple);
+    position: absolute;
+    right: 0;
+    bottom: -10px;
+    left: 5px;
+  }
+}
+
+.heading-small {
+  font-weight: 100;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  + * {
+    margin-top: 0.5rem;
+  }
+}
+
+/* forms start */
+
+.field {
+  display: block;
+  position: relative;
+  width: 100%;
+  &.isRequired {
+    &::after {
+      content: "*";
+      display: block;
+      position: absolute;
+      color: color(danger);
+      top: 1.1rem;
+      right: 0.5rem;
+    }
+  }
+  .notification {
+    float: left;
+  }
+}
+
+.notification {
+  .boxed {
+    background-color: color(grey-light);
+    color: color(grey);
+    padding: 1rem;
+  }
+
+  .isSuccess,
+  &.isSuccess {
+    color: color(success);
+    &.boxed {
+      background-color: lighten(color(success), 35%);
+    }
+  }
+  .isInfo,
+  &.isInfo {
+    color: color(info);
+    &.boxed {
+      background-color: lighten(color(info), 35%);
+    }
+  }
+  .isWarning,
+  &.isWarning {
+    color: color(warning);
+    &.boxed {
+      background-color: lighten(color(warning), 35%);
+    }
+  }
+  .isDanger,
+  &.isDanger {
+    color: color(danger);
+    &.boxed {
+      background-color: lighten(color(danger), 35%);
+    }
+  }
+}
+
+@mixin inputStyle() {
+  background: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  border: 0.1rem solid color(purple);
+  padding: 0.25rem 2rem;
+  outline: none;
+  text-decoration: none;
+  line-height: inherit;
+  @include transition(all);
+}
+
+.control {
+  display: block;
+  height: 100%;
+  width: 100%;
+  input[type="text"],
+  input[type="tel"],
+  input[type="email"],
+  input[type="number"],
+  input[type="date"],
+  input[type="datetime-local"],
+  input[type="month"],
+  input[type="password"],
+  input[type="range"],
+  input[type="search"],
+  input[type="time"],
+  input[type="url"],
+  input[type="week"],
+  textarea {
+    display: block;
+    @include inputStyle();
+    border-color: color(grey);
+    padding: 0.5rem 1rem;
+    width: 100%;
+    &:active,
+    &:focus {
+      border: 0.1rem solid color(purple);
+    }
+    &.isSuccess {
+      border-color: color(success);
+      &:active,
+      &:focus {
+        border-color: darken(color(success), 25%);
+      }
+    }
+    &.isInfo {
+      border-color: color(info);
+      &:active,
+      &:focus {
+        border-color: darken(color(info), 25%);
+      }
+    }
+    &.isWarning {
+      border-color: color(warning);
+      &:active,
+      &:focus {
+        border-color: darken(color(warning), 25%);
+      }
+    }
+    &.isDanger {
+      border-color: color(danger);
+      &:active,
+      &:focus {
+        border-color: darken(color(danger), 25%);
+      }
+    }
+  }
+  textarea {
+    height: 100%;
+    min-height: 150px;
+    resize: none;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(color(purple), 0.5);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: color(purple);
+      outline: 1px solid color(purple);
+    }
+  }
+}
+
+.field {
+  label + .control {
+    textarea {
+      height: calc(100% - 1.8rem);
+    }
+  }
+}
+
+button,
+.button {
+  cursor: pointer;
+  display: inline-block;
+  @include inputStyle();
+  &:hover,
+  &:active,
+  &:focus {
+    color: color(white);
+  }
+
+  &:focus {
+    background-color: color(purple);
+  }
+
+  &:hover {
+    background-color: darken(color(purple), 8%);
+  }
+
+  &:active {
+    background-color: darken(color(purple), 16%);
+  }
+}
+
+/* forms end */
+
+table {
+  tr {
+    &:nth-child(odd) {
+      background-color: color(grey-dark);
+    }
+    &:nth-child(even) {
+      background-color: color(grey-darker);
+    }
+  }
+
+  th {
+    font-weight: bold;
+  }
+
+  td {
+    padding: 0.5rem 1rem;
+  }
+}
+
+blockquote {
+  background-color: color(grey);
+  color: color(grey-darker);
+  margin: 1rem 0;
+  padding: 1rem;
+}
+
+/*
+code {
+    display:inline;
+    font-family:"Courier New";
+    font-weight:600;
+    color:color(purple);
+    background-color:color(grey-light);
+    padding: 0.5rem;
+}
+*/
+
+code {
+  font-family: "Courier New";
+}
+
+.blog-article {
+  h1:first-of-type {
+    margin-top: 0;
+  }
+  a.back-link + section h1:first-of-type {
+    margin-top: 1em;
+  }
+}
+
+.blog-article {
+  h3 {
+    color: color(grey);
+  }
+  /*
+  a {
+      color: color(purple-light);
+      &:hover {
+          color: color(purple);
+      }
+      &:active
+  }
+  */
+}
+
+.breadcrumb {
+  list-style-type: none;
+  margin: 0;
+  padding: 0 0 2rem 0;
+  li {
+    color: color(grey);
+    display: block;
+    float: left;
+    position: relative;
+    &::after {
+      content: "/";
+      display: block;
+      top: 0;
+      right: 0.5rem;
+      position: absolute;
+    }
+    &:last-child::after {
+      display: none;
+    }
+    a {
+      padding: 0 1.5rem 0 0;
+    }
+  }
+}
+
+.blog.content {
+  max-width: 1200px;
+}
+
+/* this is coming from a browser plugin */
+#sponsored-ad {
+  display: none;
+}

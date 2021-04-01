@@ -1,0 +1,44 @@
+.social-links {
+  display: block;
+  position: relative;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  padding-bottom: 1rem;
+  a {
+    display: inline-block;
+    margin: 0 4px;
+    width: 30px;
+    height: 32px;
+    color: color(grey);
+    border-bottom: 2px solid color(black);
+    background-color: color(grey-dark);
+    line-height: 30px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    @include transition("color,border-color");
+    &:hover,
+    &:active,
+    &:focus {
+      outline: none;
+    }
+
+    &:hover,
+    &:active {
+      color: color(purple-light);
+      border-bottom: 2px solid color(purple-light);
+    }
+
+    &:focus {
+      color: color(purple-lighter);
+      border-bottom: 2px solid color(purple-lighter);
+    }
+
+    i {
+      line-height: inherit;
+    }
+  }
+}

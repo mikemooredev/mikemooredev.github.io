@@ -1,0 +1,56 @@
+{% capture blog_layout %}
+<div class="blog content">
+
+  <div class="flex-wrapper mrl-0-1">
+
+    <div class="flex-item fb-xxl-25 prl-1 order-xl-0 order-xxl-1">
+      
+      {% include blog/tag-cloud.html %}
+
+    </div>
+
+    <div class="flex-item fb-xxl-75 prl-1 order-xl-1 order-xxl-0">
+
+      <section class="archive">
+
+        <div class="flex-wrapper mrl-0-1 mb-1 archive">
+
+        {% assign post_count = 0 %} 
+        {% if page.collection == "tag" %}
+          
+          {% assign current_page_title = page.title %}          
+          {% assign current_tag_handle = current_page_title | downcase | replace: " ", "-" %}
+          {% for tag in site.tags %}
+            {% assign tag_handle = tag[0] | downcase | replace: " ", "-" %}
+            {% assign tag_posts = tag[1] %}
+            {% if tag_handle == current_tag_handle %}
+              {% include /blog/articles/list.html posts=tag_posts %}
+              {% assign post_count = post_count | plus: 1 %}
+            {% endif %}
+          {% endfor %}
+          
+        {% else %}
+          
+          {% include /blog/articles/list.html posts=site.posts %}
+          {% assign post_count = post_count | plus: 1 %}
+
+        {% endif %}
+
+        {% if post_count == 0 %}
+          <div class="flex-item prl-1">
+            No articles found for tag '{{ page.name }}'
+          </div>
+        {% endif %}
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </div>
+
+</div>
+{% endcapture %}
+
+{% include layout/default.html content=blog_layout %}

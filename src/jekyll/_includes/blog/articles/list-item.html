@@ -1,0 +1,9 @@
+<article class="flex-item flex-item-{{ include.index }} archive__item fg-1 fb-sm-50 fb-xl-33 prl-1 mb-2">
+  <a class="archive__item__link" href="{{ include.url }}" title="{{ include.title }}">                               
+      <span class="archive__item__thumbnail">
+          <img src="{{ include.thumbnail }}" alt="{{ include.thumbnail_alt }}" onload="this.classList.add('hasLoaded')" />
+      </span>
+      <span class="archive__item__title">{{ include.title | default: "<!--[title]-->" }}</span>
+      <span class="archive__item__description h5">{{ include.excerpt | default: "<!--[excerpt]-->" }}</span>
+  </a>
+</article>

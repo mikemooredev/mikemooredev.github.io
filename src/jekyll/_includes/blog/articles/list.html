@@ -1,0 +1,12 @@
+{%- for post in include.posts -%}
+  {% assign thumbnail = site.thumbnail_path | append: post.thumbnail %}
+  {% assign post_excerpt = post.excerpt | strip_html %}
+  {% include blog/articles/list-item.html 
+      index=forloop.index0
+      url=post.url
+      thumbnail=thumbnail
+      thumbnail_alt=post.thumbnail_alt
+      title=post.title
+      excerpt=post_excerpt
+  %}
+{%- endfor -%}

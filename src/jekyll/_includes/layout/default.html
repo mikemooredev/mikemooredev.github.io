@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="en">
+  {% include global/head.html %}
+  <body class="{{ page.name | remove: '.html' }}">
+    {% include header.html %}
+    {{ include.content }}
+    {% include global/foot.html %}
+  </body>
+</html>

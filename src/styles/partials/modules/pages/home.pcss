@@ -1,0 +1,180 @@
+.index {
+  div.content-top {
+    position: relative;
+  }
+
+  section.header {
+    height: 10rem;
+    background-size: cover;
+    background-position: top center;
+    @include breakpoint(laptop) {
+      height: auto;
+    }
+    ol {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      text-align: center;
+      height: 100%;
+      @include breakpoint(laptop) {
+        padding: 0.5rem 3rem;
+        text-align: right;
+      }
+      li {
+        color: color(white);
+        display: block;
+        margin: 0;
+        padding: 1rem;
+        font-size: 2rem;
+        opacity: 0;
+
+        line-height: initial;
+        position: absolute;
+        right: 0;
+        left: 0;
+        @include vertical-align(absolute);
+
+        &:nth-child(1) {
+          -webkit-animation: fadeInOut1 10s infinite linear;
+          animation: fadeInOut1 10s infinite linear;
+        }
+        &:nth-child(2) {
+          -webkit-animation: fadeInOut2 10s infinite linear;
+          animation: fadeInOut2 10s infinite linear;
+        }
+        &:nth-child(3) {
+          -webkit-animation: fadeInOut3 10s infinite linear;
+          animation: fadeInOut3 10s infinite linear;
+        }
+        &:nth-child(4) {
+          -webkit-animation: fadeInOut4 10s infinite linear;
+          animation: fadeInOut4 10s infinite linear;
+        }
+        &:nth-child(5) {
+          -webkit-animation: fadeInOut5 10s infinite linear;
+          animation: fadeInOut5 10s infinite linear;
+        }
+
+        @include breakpoint(laptop) {
+          $fadeDelay: 0.5s;
+
+          &:nth-child(1),
+          &:nth-child(2),
+          &:nth-child(3),
+          &:nth-child(4),
+          &:nth-child(5) {
+            line-height: 7.5rem;
+            padding: 0;
+            position: relative;
+            top: auto;
+            right: auto;
+            left: auto;
+            -webkit-animation: fadeInLeft 1s linear $fadeDelay normal forwards;
+            animation: fadeInLeft 1s linear $fadeDelay normal forwards;
+          }
+
+          &:nth-child(1) {
+            -webkit-animation-delay: $fadeDelay;
+            animation-delay: $fadeDelay;
+          }
+          &:nth-child(2) {
+            -webkit-animation-delay: $fadeDelay * 2;
+            animation-delay: $fadeDelay * 2;
+          }
+          &:nth-child(3) {
+            -webkit-animation-delay: $fadeDelay * 3;
+            animation-delay: $fadeDelay * 3;
+          }
+          &:nth-child(4) {
+            -webkit-animation-delay: $fadeDelay * 4;
+            animation-delay: $fadeDelay * 4;
+          }
+          &:nth-child(5) {
+            -webkit-animation-delay: $fadeDelay * 5;
+            animation-delay: $fadeDelay * 5;
+          }
+        }
+      }
+    }
+  }
+
+  section.content-footer {
+    p {
+      color: color(grey);
+      margin: 0;
+      text-align: right;
+      font-size: 0.9rem;
+    }
+  }
+
+  section.instafeed {
+    h2 {
+      margin: calc(var(--gutter) * 2);
+      margin-bottom: calc(var(--gutter) * 4);
+      @include breakpoint(tablet) {
+        margin-bottom: calc(var(--gutter) * 3);
+      }
+      a {
+        color: color(white);
+      }
+    }
+    .insta-wrapper a {
+      display: block;
+      height: 0;
+      overflow: hidden;
+      position: relative;
+      padding-top: 100%;
+      width: 100%;
+      img {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 100%;
+      }
+    }
+  }
+}
+
+section.intro {
+  background-color: color(grey-darker);
+
+  h1 {
+    margin-top: 0;
+  }
+  h3 {
+    color: color(grey);
+    margin: 0 0 -1rem 0;
+  }
+
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  @include breakpoint(laptop) {
+    background-color: color(black-jet);
+    background-color: rgba(color(black), 0.5);
+    padding: 3rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 2rem 2rem 0 2rem;
+    width: 70%;
+  }
+}
+section.whatdo {
+  padding-bottom: var(--gutter);
+
+  @include breakpoint(laptop) {
+    background-color: color(grey-darker);
+  }
+
+  .whatdo__item {
+    h3 {
+      color: color(grey);
+      display: block;
+    }
+  }
+}

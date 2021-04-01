@@ -1,0 +1,28 @@
+$colors: (
+  white: #fafafa,
+  grey-lighter: #f7f7f7,
+  grey-light: #eeeeee,
+  grey: #aeaeae,
+  grey-dark: #333333,
+  grey-darker: #1a1a1a,
+  purple-lighter: #c784bb,
+  purple-light: #b761a7,
+  purple: #7a386e,
+  info: #3298dc,
+  success: #48c774,
+  warning: #ffdd57,
+  danger: #f14668,
+  black: #0d0d0d,
+  black-jet: #000000,
+);
+
+@function color($color) {
+  @if map-has-key($colors, $color) {
+    $color: map-get($colors, $color);
+  } @else {
+    @if type-of($color) !=color {
+      @error "Invalid color name: `#{$color}`.";
+    }
+  }
+  @return $color;
+}

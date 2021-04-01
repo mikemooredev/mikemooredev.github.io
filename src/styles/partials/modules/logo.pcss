@@ -1,0 +1,44 @@
+.logo {
+  padding-left: 4rem;
+  position: relative;
+  text-align: left;
+
+  @include breakpoint(laptop) {
+    padding: 2rem 2rem 0 2rem;
+  }
+
+  .my-photo {
+    position: absolute;
+    left: 0;
+    @include breakpoint(laptop) {
+      position: relative;
+      left: auto;
+    }
+
+    img {
+      width: 3rem;
+      @include breakpoint(laptop) {
+        width: 6rem;
+      }
+    }
+  }
+
+  .site-title-block {
+    .site-title {
+      display: block;
+      font-size: 1.3rem;
+      font-weight: 100;
+      font-style: normal;
+      line-height: 3rem;
+      color: color(grey-light);
+      letter-spacing: 0px;
+      padding-top: 0;
+      @include breakpoint(laptop) {
+        line-height: initial;
+        margin: 0;
+        padding-top: 0.5rem;
+        text-align: center;
+      }
+    }
+  }
+}

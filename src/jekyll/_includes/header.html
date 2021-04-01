@@ -1,0 +1,25 @@
+<header class="header container full pt-1 pb-1">
+  
+  {% include logo.html %}
+  {% include header-navigation.html %}
+
+  <button
+    type="button"
+    class="trigger"
+    onclick="
+      this.classList.toggle('is-active');
+      document.querySelector('[data-el=\'site-navigation\']').classList.toggle('is-active');
+    "
+  >
+    <span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+    <span>
+      <span></span>
+      <span></span>
+    </span>
+  </button>
+
+</header>

@@ -1,0 +1,100 @@
+header.header {
+  background-color: color(black);
+  border-bottom: 1px solid color(grey-dark);
+
+  @include breakpoint(laptop) {
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  button.trigger {
+    background: none;
+    border: 0 none;
+    cursor: pointer;
+    outline: none;
+    display: block;
+    height: 3rem;
+    width: 2rem;
+    padding: 0;
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    @include transition(transform);
+    &:hover,
+    &:active,
+    &:focus {
+      outline: none;
+    }
+    > span {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      &:nth-child(1) {
+        opacity: 1;
+        span {
+          &:nth-child(1) {
+            top: 12px;
+          }
+          &:nth-child(2) {
+            @include vertical-align(absolute);
+          }
+          &:nth-child(3) {
+            bottom: 12px;
+          }
+        }
+      }
+      &:nth-child(2) {
+        opacity: 0;
+        span {
+          @include vertical-align(absolute);
+          &:nth-child(1) {
+            @include rotate(45deg);
+          }
+          &:nth-child(2) {
+            @include rotate(-45deg);
+          }
+        }
+      }
+      span {
+        position: absolute;
+        background-color: color(grey-light);
+        border-radius: 2px;
+        height: 2px;
+        left: 0;
+        right: 0;
+      }
+      @include transition(all);
+    }
+    &.is-active {
+      > span {
+        &:nth-child(1) {
+          opacity: 0;
+        }
+        &:nth-child(2) {
+          opacity: 1;
+        }
+      }
+    }
+    @include breakpoint(laptop) {
+      position: relative;
+      top: auto;
+      right: auto;
+      width: 100%;
+      padding: 0.5rem 1rem;
+      display: none;
+    }
+  }
+
+  @include breakpoint(laptop) {
+    border-right: 1px solid color(grey-dark);
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 10rem;
+  }
+}
