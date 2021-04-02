@@ -15,8 +15,8 @@ collections:
     permalink: /blog/:collection/:title
 
 # Build settings
-destination: docs
-source: src/jekyll
+destination: dist
+source: ./
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -34,3 +34,17 @@ exclude:
   - Gemfile.lock
   - node_modules/
   - vendor/
+  - _config.yml
+  - src
+  - mikemooredev.code-workspace
+  - package.json
+  - package-lock.json
+  - postcss.config.js
+  - webpack.config.js
+  - .git
+  - .gitignore
+  - .babelrc
+  - .browserlistrc
+  - .env
+  - .env.example
+  - .nvmrc

@@ -1,3 +1,4 @@
+/*
 import Module from './module/Module'
 
 export default class extends Module {
@@ -171,3 +172,4 @@ export default class extends Module {
   }
 
 }
+*/

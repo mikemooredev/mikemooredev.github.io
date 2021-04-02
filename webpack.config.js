@@ -1,10 +1,10 @@
 require('dotenv').config()
 
-const mode = process.env.NODE_ENV || "development"
-const path = require('path')
-
 const Dotenv = require('dotenv-webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+const mode = process.env.NODE_ENV || "development"
+const path = require('path')
 
 module.exports = {
 
@@ -14,6 +14,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'src/jekyll/assets/js'),
     filename: 'script.js',
+    clean: true
   },
 
   resolve: {

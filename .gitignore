@@ -5,8 +5,3 @@
 *.code-workspace
 
 node_modules
-
-src/jekyll/assets/script.js
-src/jekyll/assets/script.js.map
-src/jekyll/assets/style.css
-src/jekyll/assets/style.css.map
