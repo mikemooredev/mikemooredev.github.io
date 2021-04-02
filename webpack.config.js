@@ -12,7 +12,7 @@ module.exports = {
 
   entry: './src/scripts/index.js',
   output: {
-    path: path.resolve(__dirname, 'src/jekyll/assets/js'),
+    path: path.resolve(__dirname, 'assets/js'),
     filename: 'script.js',
     clean: true
   },
