@@ -4,86 +4,127 @@ title: Contact
 permalink: /contact/
 ---
 
-<div class="contact" 
-  data-module="contact-form"
-  data-recaptcha-size="invisible"
-  data-recaptcha-sitekey="6LehCeUUAAAAAOzKRO1VqRLgYQEjOGK2Y6gR_YPc">
-        
+<style>
+  /* CSS */
+  #g-recaptcha-response {
+    display: block !important;
+    position: absolute;
+    margin: -50px 0 0 0 !important;
+    z-index: -999999;
+    opacity: 0;
+  }
+</style>
+
+<div class="contact" data-module="contact-form">
   <section class="content">
-
-    <form data-el="contact-form.form">
-
+    <form
+      data-el="contact-form.form"
+      action="https://formspree.io/f/myylyeze"
+      method="POST"
+    >
       <h2 class="heading mt-0">Get in touch</h2>
 
-      <div class="flex-wrapper"> 
-
+      <div class="flex-wrapper">
         <div class="flex-item fb-xl-90 fb-xxl-70">
-
           <div class="flex-wrapper form mt-1">
-              
             <div class="flex-item fb-sm-50">
-
               <div class="field isRequired">
                 <div class="control pt-1">
-                  <input type="text" data-el="contact-form.name" placeholder="Name" />
-                  <span class="notification isDanger" data-el="contact-form.nameNotification"></span>
+                  <input
+                    type="text"
+                    data-el="contact-form.name"
+                    placeholder="Name"
+                  />
+                  <span
+                    class="notification isDanger"
+                    data-el="contact-form.nameNotification"
+                  ></span>
                 </div>
               </div>
 
               <div class="field isRequired">
                 <div class="control pt-1">
-                  <input type="email" data-el="contact-form.email" placeholder="Email" />
-                  <span class="notification isDanger" data-el="contact-form.emailNotification"></span>
+                  <input
+                    type="email"
+                    data-el="contact-form.email"
+                    placeholder="Email"
+                  />
+                  <span
+                    class="notification isDanger"
+                    data-el="contact-form.emailNotification"
+                  ></span>
                 </div>
               </div>
 
               <div class="field">
                 <div class="control pt-1">
-                  <input type="tel" data-el="contact-form.phone" placeholder="Phone" />
-                  <span class="notification isDanger" data-el="contact-form.phoneNotification"></span>
+                  <input
+                    type="tel"
+                    data-el="contact-form.phone"
+                    placeholder="Phone"
+                  />
+                  <span
+                    class="notification isDanger"
+                    data-el="contact-form.phoneNotification"
+                  ></span>
                 </div>
               </div>
-
             </div>
 
             <div class="flex-item fb-sm-50 pl-1">
-
               <div class="field isRequired">
                 <div class="control pt-1">
-                  <textarea data-el="contact-form.message" placeholder="Message"></textarea>
-                  <span class="notification isDanger" data-el="contact-form.messageNotification"></span>
+                  <textarea
+                    data-el="contact-form.message"
+                    placeholder="Message"
+                  ></textarea>
+                  <span
+                    class="notification isDanger"
+                    data-el="contact-form.messageNotification"
+                  ></span>
                 </div>
               </div>
-
             </div>
 
-            <div class="flex-item"> 
+            <div class="flex-item">
               <div class="field">
-                <div class="control ptb-1">                       
-                  <button type="submit" data-el="contact-form.submit">Send</button>
+                <div class="control ptb-1">
+                  <button type="submit" data-el="contact-form.submit">
+                    Send
+                  </button>
                 </div>
               </div>
             </div>
 
             <div class="flex-item p1-1">
-              <span class="notification" data-el="contact-form.notification"></span>
+              <span
+                class="notification"
+                data-el="contact-form.notification"
+              ></span>
+              <div
+                class="g-recaptcha"
+                data-sitekey="6LehCeUUAAAAAOzKRO1VqRLgYQEjOGK2Y6gR_YPc"
+              ></div>
             </div>
-
           </div>
-
         </div>
-
-      </div>     
-
-      {% comment %}
-      <div data-model="contact-form.name"></div>
-      <div data-model="contact-form.email"></div>
-      <div data-model="contact-form.phone"></div>
-      <div data-model="contact-form.message"></div>
-      {% endcomment %}
-
+      </div>
     </form>
-
   </section>
-  
 </div>
+
+<script>
+  // javascript
+  window.onload = function () {
+    var el = document.getElementById('g-recaptcha-response')
+    if (el) {
+      el.setAttribute('required', 'required')
+    }
+  }
+</script>
+
+<script
+  src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+  async
+  defer
+></script>

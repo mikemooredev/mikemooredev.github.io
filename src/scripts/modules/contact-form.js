@@ -1,4 +1,3 @@
-/*
 import Module from './module/Module'
 
 export default class extends Module {
@@ -15,13 +14,7 @@ export default class extends Module {
 
   setupData() {
     this.data = {
-      formIsValid: true,
-      mail: {
-        options: {
-          apiKey: '091BC1A3C79AABA6D03D33F7B28445D6776F77C21C35F92B949525AA797AB8C92171DA7992E664C67BD0A429FC18628A',
-          username: 'mike.moore88@googlemail.com'
-        }
-      }
+      formIsValid: true
     }
   }
 
@@ -29,15 +22,21 @@ export default class extends Module {
     e.preventDefault()
     if (this.contactFormValidate()) {
 
-      window.grecaptcha.ready(() => {
-        // do request for recaptcha token
-        // response is promise with passed token
-        window.grecaptcha.execute(this.recaptchaSitekey)
-          .then(token => {
-            // add token value to form
-            this.onRecaptchaVerify(token)
-          });
-      });
+      const data = new FormData(e.target)
+      fetch(this.els.formEl.action, {
+        method: form.method,
+        body: data,
+        headers: {
+          Accept: 'application/json',
+        },
+      })
+      .then((response) => {
+        this.els.notificationEl.innerHTML = 'Thanks for your submission!'
+        form.reset()
+      })
+      .catch((error) => {
+        this.els.notificationEl.innerHTML = 'Oops! There was a problem submitting your form'
+      })
 
     }
   }
@@ -52,10 +51,12 @@ export default class extends Module {
     if (inputEl) {
       if (!inputEl.value.length) {
         inputEl.classList.add('isDanger')
+        inputEl.setAttribute('aria-invalid','true')
         this.data.formIsValid = false;
         this.setNotificationHTML(notificationEl, notificationHTML)
       } else {
         inputEl.classList.remove('isDanger')
+        inputEl.setAttribute('aria-invalid','false')
         this.setNotificationHTML(notificationEl, '')
         return true
       }
@@ -78,70 +79,23 @@ export default class extends Module {
 
   }
 
-  onRecaptchaVerify(recaptchaToken) {
-
-    console.log(recaptchaToken)
-
-    const elasticemail = require('elasticemail');
-
-    const client = elasticemail.createClient({
-      username: this.data.options.username,
-      apiKey: this.data.options.apiKey
-    });
-
-    const bodyText = `Name: ${this.els.nameEl.value} \r\n` +
-      `Email: ${this.els.emailEl.value} \r\n` +
-      `Phone: ${this.els.phoneEl.value} \r\n` +
-      `Message: ${this.els.messageEl.value} \r\n\r\n`;
-
-    const message = {
-      "subject": 'New Enquiry',
-      "to": 'me@mikemoore.dev',
-      "from": 'noreply@mikemoore.dev',
-      "fromName": this.els.nameEl.value,
-      "sender": this.els.emailEl.value,
-      "senderName": this.els.nameEl.value,
-      "replyTo": this.els.emailEl.value,
-      "replyToName": this.els.nameEl.value,
-      "bodyText": bodyText,
-      "bodyType": 'Plain',
-      "isTransactional": true
-    };
-
-    client.mailer.send(message, function (err, result) {
-      if (err) {
-        this.setNotificationHTML(this.els.notificationEl, `<p class="isDanger boxed">${err}</p>`)
-        return console.error(err);
-      }
-
-      if (result.success) {
-        this.setNotificationHTML(this.els.notificationEl, `<p class="isSuccess boxed">Thank you for getting in touch, I'll get back to you as soon as possible.</p>`)
-      } else {
-        this.setNotificationHTML(this.els.notificationEl, `<p class="isDanger boxed">Oops, it looks like something went wrong, please email me directly at <a href="mailto:${emailParams.to}" title="Direct email: ${emailParams.to}">${emailParams.to}</a></p>`)
-      }
-
-      console.log(result);
-    });
-
-  }
-
-  onRecaptchaExpired() {
-    this.setNotificationHTML(this.els.notificationEl, `<p class="isDanger">There has been an error processing your enquiry, please refresh the page and try again.</p>`)
-  }
-
   validateEmail(emailEl, notificationEl, notificationHTML) {
     if (emailEl && emailEl.value.length && this.regexTest(emailEl.value, /\S+@\S+\.\S+/)) {
+      emailEl.setAttribute('aria-invalid','false')
       return true
     }
     this.setNotificationHTML(notificationEl, notificationHTML)
+    emailEl.setAttribute('aria-invalid','true')
     return false
   }
 
   validatePhone(phoneEl, notificationEl, notificationHTML) {
     if (phoneEl && phoneEl.value.length && this.regexTest(phoneEl.value, /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s./0-9]*$/)) {
+      phoneEl.setAttribute('aria-invalid','false')
       return true
     }
     this.setNotificationHTML(notificationEl, notificationHTML)
+    phoneEl.setAttribute('aria-invalid','true')
     return false
   }
 
@@ -149,20 +103,11 @@ export default class extends Module {
     return regex.test(text);
   }
 
-  get recaptchaSize() {
-    return this.el && this.el.dataset && this.el.dataset.recaptchaSize ? this.el.dataset.recaptchaSize : null
-  }
-  get recaptchaSitekey() {
-    return this.el && this.el.dataset && this.el.dataset.recaptchaSitekey ? this.el.dataset.recaptchaSitekey : null
-  }
-
   get methods() {
     return [
       'setupData',
       'contactFormSubmit',
       'contactFormValidate',
-      'onRecaptchaVerify',
-      'onRecaptchaExpired',
       'validateEmail',
       'validatePhone',
       'validateInput',
@@ -172,4 +117,3 @@ export default class extends Module {
   }
 
 }
-*/

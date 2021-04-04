@@ -3,7 +3,9 @@
   {% include global/head.html %}
   <body class="{{ page.name | remove: '.html' }}">
     {% include header.html %}
-    {{ include.content }}
+    <div class="body__inner">
+      {{ include.content }}
+    </div>
     {% include global/foot.html %}
   </body>
 </html>
