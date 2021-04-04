@@ -22,8 +22,9 @@ export default class extends Module {
     e.preventDefault()
     if (this.contactFormValidate()) {
 
+      const form = this.els.formEl
       const data = new FormData(e.target)
-      fetch(this.els.formEl.action, {
+      fetch(form.action, {
         method: form.method,
         body: data,
         headers: {
