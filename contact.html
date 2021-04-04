@@ -32,6 +32,7 @@ permalink: /contact/
                 <div class="control pt-1">
                   <input
                     type="text"
+                    name="name"
                     data-el="contact-form.name"
                     placeholder="Name"
                   />
@@ -46,6 +47,7 @@ permalink: /contact/
                 <div class="control pt-1">
                   <input
                     type="email"
+                    name="_replyto"
                     data-el="contact-form.email"
                     placeholder="Email"
                   />
@@ -60,6 +62,7 @@ permalink: /contact/
                 <div class="control pt-1">
                   <input
                     type="tel"
+                    name="phone"
                     data-el="contact-form.phone"
                     placeholder="Phone"
                   />
@@ -75,6 +78,7 @@ permalink: /contact/
               <div class="field isRequired">
                 <div class="control pt-1">
                   <textarea
+                    name="message"
                     data-el="contact-form.message"
                     placeholder="Message"
                   ></textarea>
@@ -101,6 +105,9 @@ permalink: /contact/
                 class="notification"
                 data-el="contact-form.notification"
               ></span>
+            </div>
+
+            <div class="flex-item p1-1">
               <div
                 class="g-recaptcha"
                 data-sitekey="6LcESZwaAAAAAB3v5hmjPMjJwH-8YIEU8YZEa3xv"
