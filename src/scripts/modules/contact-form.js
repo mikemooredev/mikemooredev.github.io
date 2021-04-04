@@ -49,7 +49,7 @@ export default class extends Module {
   }
 
   validateInput(inputEl, notificationEl, notificationHTML) {
-    if (inputEl) {
+    if (inputEl && inputEl.getAttribute('aria-required') === "true") {
       if (!inputEl.value.length) {
         inputEl.classList.add('isDanger')
         inputEl.setAttribute('aria-invalid','true')
@@ -81,23 +81,23 @@ export default class extends Module {
   }
 
   validateEmail(emailEl, notificationEl, notificationHTML) {
-    if (emailEl && emailEl.value.length && this.regexTest(emailEl.value, /\S+@\S+\.\S+/)) {
-      emailEl.setAttribute('aria-invalid','false')
-      return true
-    }
-    this.setNotificationHTML(notificationEl, notificationHTML)
-    emailEl.setAttribute('aria-invalid','true')
-    return false
+    if (emailEl && emailEl.getAttribute('aria-required') === "true" && emailEl.value.length && !this.regexTest(emailEl.value, /\S+@\S+\.\S+/)) {
+      emailEl.setAttribute('aria-invalid','true')
+      this.setNotificationHTML(notificationEl, notificationHTML)
+      return false
+    }    
+    emailEl.setAttribute('aria-invalid','false')
+    return true
   }
 
   validatePhone(phoneEl, notificationEl, notificationHTML) {
-    if (phoneEl && phoneEl.value.length && this.regexTest(phoneEl.value, /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s./0-9]*$/)) {
-      phoneEl.setAttribute('aria-invalid','false')
-      return true
-    }
-    this.setNotificationHTML(notificationEl, notificationHTML)
-    phoneEl.setAttribute('aria-invalid','true')
-    return false
+    if (phoneEl && phoneEl.getAttribute('aria-required') === "true" && phoneEl.value.length && !this.regexTest(phoneEl.value, /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s./0-9]*$/)) {
+      phoneEl.setAttribute('aria-invalid','true')
+      this.setNotificationHTML(notificationEl, notificationHTML)
+      return false
+    }    
+    phoneEl.setAttribute('aria-invalid','false')
+    return true
   }
 
   regexTest(text, regex) {

@@ -35,6 +35,7 @@ permalink: /contact/
                     name="name"
                     data-el="contact-form.name"
                     placeholder="Name"
+                    aria-required="true"
                   />
                   <span
                     class="notification isDanger"
@@ -50,6 +51,7 @@ permalink: /contact/
                     name="_replyto"
                     data-el="contact-form.email"
                     placeholder="Email"
+                    aria-required="true"
                   />
                   <span
                     class="notification isDanger"
@@ -74,13 +76,14 @@ permalink: /contact/
               </div>
             </div>
 
-            <div class="flex-item fb-sm-50 pl-1">
+            <div class="flex-item fb-sm-50 pl-1 rm-p-xs">
               <div class="field isRequired">
                 <div class="control pt-1">
                   <textarea
                     name="message"
                     data-el="contact-form.message"
                     placeholder="Message"
+                    aria-required="true"
                   ></textarea>
                   <span
                     class="notification isDanger"
@@ -90,7 +93,7 @@ permalink: /contact/
               </div>
             </div>
 
-            <div class="flex-item">
+            <!--div class="flex-item">
               <div class="field">
                 <div class="control ptb-1">
                   <div
@@ -100,7 +103,7 @@ permalink: /contact/
                   ></div>
                 </div>
               </div>
-            </div>
+            </div-->
 
             <div class="flex-item">
               <div class="field">
@@ -112,11 +115,15 @@ permalink: /contact/
               </div>
             </div>
 
-            <div class="flex-item p1-1">
-              <span
-                class="notification"
-                data-el="contact-form.notification"
-              ></span>
+            <div class="flex-item">
+              <div class="field">
+                <div class="control ptb-1">
+                  <span
+                    class="notification"
+                    data-el="contact-form.notification"
+                  ></span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
