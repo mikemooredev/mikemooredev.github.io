@@ -6,8 +6,20 @@
       <a href="/blog" title="All">all</a>
     </li>
     {% for tag in site.tag %}
+
       {% assign stripped_tag = tag.name | strip_html %}
       {% assign tag_handle = stripped_tag | downcase | replace: " ", "-" %}
+
+      {% assign has_tag = false %}
+      {% for blog_tag in site.tags %}
+        {% if tag_handle == blog_tag[0] and blog_tag[1].size > 0 %}
+          {% assign has_tag = true %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+
+      {% unless has_tag %}{% break %}{% endunless %}
+      
       <li class="flex-item tag-cloud__item fb-auto m-0 ptb-0">
         <a href="/blog/tag/{{- tag_handle -}}" title="{{ stripped_tag }}">
           {{ stripped_tag }}

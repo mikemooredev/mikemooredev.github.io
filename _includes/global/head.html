@@ -1,46 +1,49 @@
 <head>
+  {% assign title = site.title %} {% if page.title != nil %} {% assign title =
+  page.title | append: " | " | append: site.title %} {% endif %} {% assign
+  expiry_date = "now" | date: '%s' %} {% assign seconds = 7 | times: 24 | times:
+  60 | times: 60 %}
 
-  {% assign title = site.title  %}
-  {% if page.title != nil %}
-  {% assign title = page.title | append: " | " | append: site.title %}
-  {% endif %}
-  
-  {% assign expiry_date = "now" | date: '%s' %}
-  {% assign seconds = 7 | times: 24 | times: 60 | times: 60 %}  
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
-  <meta http-equiv="Cache-Control" content="max-age=604800"/>
+  {% unless jekyll.environment == "development" %}
+  <meta http-equiv="Cache-Control" content="max-age=604800" />
   <meta http-equip="expires" content="{{ expiry_date | date: "%s" | plus: seconds | date: "%a, %d %b %Y %H:%M:%S GMT" }}">
-  
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="robots" content="index, follow">
+  {% endunless %}
 
-  <meta name="description" content="{{ page.excerpt | strip_html | default: site.description }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
 
-  <meta name="author" content="{{ site.author }}">
-  <meta property="og:locale" content="en_GB">
+  <meta
+    name="description"
+    content="{{ page.excerpt | strip_html | default: site.description }}"
+  />
 
-  <meta name="twitter:site" content="{{ site.author }}">
+  <meta name="author" content="{{ site.author }}" />
+  <meta property="og:locale" content="en_GB" />
+
+  <meta name="twitter:site" content="{{ site.author }}" />
   <meta name="twitter:creator" content="{{ site.author }}" />
-  <meta name="twitter:card" content="summary">
-  <meta property="og:site_name" content="{{ site.title }}">
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:site_name" content="{{ site.title }}" />
   <meta property="og:title" content="{{ title | default: site.title }}" />
   <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
-  <meta property="og:description" content="{{ page.excerpt | strip_html | default: site.description }}" />
+  <meta
+    property="og:description"
+    content="{{ page.excerpt | strip_html | default: site.description }}"
+  />
   <meta property="og:image" content="{{ site.url }}/assets/img/header-bg.png" />
 
-  <link rel="icon" href="{{ site.url }}/assets/img/favicon.ico">
-  
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200&display=swap" rel="stylesheet">
-  
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
-    rel="stylesheet">
-  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/monokai-sublime.min.css" rel="stylesheet">
+  <link rel="icon" href="{{ site.url }}/assets/img/favicon.ico" />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200&display=swap" rel="stylesheet" />
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet" />
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/monokai-sublime.min.css" rel="stylesheet" />
 
   <title>{{ title | default: site.title }}</title>
 
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
 </head>
