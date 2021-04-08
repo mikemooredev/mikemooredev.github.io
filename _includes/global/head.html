@@ -4,9 +4,16 @@
   {% if page.title != nil %}
   {% assign title = page.title | append: " | " | append: site.title %}
   {% endif %}
+  
+  {% assign expiry_date = "now" | date: '%s' %}
+  {% assign seconds = 7 | times: 24 | times: 60 | times: 60 %}  
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <meta http-equiv="Cache-Control" content="max-age=604800"/>
+  <meta http-equip="expires" content="{{ expiry_date | date: "%s" | plus: seconds | date: "%a, %d %b %Y %H:%M:%S GMT" }}">
+  
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <meta name="robots" content="index, follow">
 
