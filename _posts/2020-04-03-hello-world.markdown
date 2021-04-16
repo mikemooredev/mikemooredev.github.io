@@ -8,22 +8,30 @@ permalink: /:year/:month/:day/:title
 thumbnail: /hello-world-min.jpg
 tumbnail_alt: 'PHP echo hello world'
 tags: hello-world
+comments: true
 ---
 
 # Hello World
 
 ### Welcome to my new home.
 
-Despite the thumbnail incinuating the use of php, this site is built with Jekyll and hosted with Github pages.
+Despite the thumbnail incinuating the use of php, this site is built using the static site builder, [Jekyll](https://jekyllrb.com/){:title="Jekyll - Static site generator"}{:target="_blank"} and hosted with [Github Pages](https://pages.github.com/){:title="Github Pages"}{:target="_blank"}.
+
+Jekyll takes text written in your favorite markup language and uses layouts to create a static website. You can tweak the site’s look and feel, URLs, the data displayed on the page, and more.
+
+With GitHub Pages you can create a website directly from a GitHub repository.
+
 
 ### Why have I done this?
 
-As a developer, I'm entirely capable of keeping my site up to date by writing code but the use of markdown keeps this to a minimum. The use of Vue.js ensures the site remains lightning fast at all times.
+As a developer, I'm entirely capable of keeping my site up to date by writing code but the use of markdown keeps this to a minimum. Using a static site generator ensures the site remains lightning fast at all times.
 
 ### How does the contact form work?
 
-With the lack of a back end, at first I thought the contact form would be an ambitious hurdle to overcome but it's really quite simple. I've utilised <a href="https://elasticemail.com/referral-reward?r=947bf678-28ac-4150-b76b-43db81dd4365" target="_blank" title="Powerful email marketing tools to help you grow">Elastic Email's</a> HTTP API to process my contact form submissions.
+As there isn't a server behind the scenes I'm using [Formspree.io](https://formspree.io/){:title="Formspree"}{:target="_blank"} to power my contact form.
+
+Formspree allows developers to build HTML forms with the markup in any structure they like. On submission of the form, the data is handled by Formspree's API. Formspree forms can perfectly match your website by inheriting your website's CSS.
 
 ### Want to know more?
 
-Feel free to ask a question using the <a href="https://disqus.com/" target="_blank">Disqus</a> comments below or head over to my contact page and <a href="/contact" title="Get in touch">get in touch</a>
+Feel free to ask a question using the [Disqus](https://disqus.com/){:target="_blank"} comments below or head over to my [contact page](/contact){:title="Get in touch"} and get in touch.
