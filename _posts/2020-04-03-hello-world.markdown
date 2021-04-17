@@ -3,7 +3,7 @@ layout: article
 title: 'Hello World'
 excerpt: 'Introducing my new website'
 date: 2020-04-03 21:14:05 +0000
-categories: jekyll update
+categories: jekyll hello-world
 permalink: /:year/:month/:day/:title
 thumbnail: /hello-world-min.jpg
 tumbnail_alt: 'PHP echo hello world'
