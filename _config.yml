@@ -1,18 +1,13 @@
 title: MikeMooreDev
 email: me@mikemoore.dev
-description: >- 
+description: >-
   A no-nonsense, detail-oriented, developer specialising in the production of supreme front end experiences.
-baseurl: "" 
+baseurl: ""
 url: "https://mikemoore.dev"
 author: "@mikemooredev"
 
 image_path: /assets/img
 thumbnail_path: /assets/img/blog/thumbnails
-
-collections:
-  tag:
-    output: true
-    permalink: /blog/:collection/:title
 
 # Build settings
 destination: dist
